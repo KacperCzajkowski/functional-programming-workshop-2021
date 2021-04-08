@@ -6,6 +6,9 @@ import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.function.BinaryOperator;
+import java.util.function.Function;
 
 import static java.math.RoundingMode.HALF_UP;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -41,10 +44,12 @@ class Exercise5 {
     @Test
     public void shouldTestReducing() {
         // given / when
-        BigDecimal summarizedInvoiceExpenses = null; // do zaimplementowania, użyj zmiennej invoices
+        BigDecimal summarizedInvoiceExpenses = invoices.stream()
+                .map(invoice -> invoice.getPrice().multiply(BigDecimal.valueOf(invoice.getQuantity())))
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
 
         // then
-        assertEquals(BigDecimal.valueOf(249.77), summarizedInvoiceExpenses.setScale(2, HALF_UP));
+        assertEquals(BigDecimal.valueOf(238.50).setScale(2, HALF_UP), summarizedInvoiceExpenses.setScale(2, HALF_UP));
     }
 
     @Test

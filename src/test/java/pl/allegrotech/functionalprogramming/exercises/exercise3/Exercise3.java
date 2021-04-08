@@ -56,7 +56,6 @@ class Exercise3 {
     }
 
     public static Comparator<String> reverse(Comparator<String> comparator) {
-        // do zaimplementowania
         return null;
     }
 

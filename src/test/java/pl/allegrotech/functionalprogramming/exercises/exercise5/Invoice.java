@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
 
-class Invoice {
+public class Invoice {
 
     private final String id;
     private final BigDecimal price;

@@ -23,14 +23,7 @@ class LambdasTest {
         String exampleText = " Example text   ";
 
         // and
-        TextConverter anonymousClass = new TextConverter() {
-
-            @Override
-            public String convert(String text) {
-                return text.replace(' ', '.');
-            }
-
-        };
+        TextConverter anonymousClass = text -> text.replace(' ', '.');
 
         // and
         TextConverter lambdaExpression = text -> text.replace(' ', '.');

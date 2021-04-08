@@ -41,16 +41,29 @@ class Exercise4 {
         Driver audiDriver = new Driver(new Car("Audi"));
         Driver bmwDriver = new Driver(new Car("BMV"));
         Driver unknownDriver = new Driver(new Car(null));
+        Driver test = new Driver(null);
 
         // when / then
         assertTrue(isAudiDriver(audiDriver));
         assertFalse(isAudiDriver(bmwDriver));
         assertFalse(isAudiDriver(unknownDriver));
+        assertFalse(isAudiDriver(test));
+        assertFalse(isAudiDriver(null));
     }
 
     private boolean isAudiDriver(Driver driver) {
-        // do zaimplementowania, postaraj się wykorzystać metody z klasy Optional
+//        return Optional.ofNullable(driver).map(Driver::getCar).flatMap(Car::getName).isPresent();
+        Optional<Driver> op = Optional.ofNullable(driver);
+        if (op.isPresent()) {
+            Car car = op.get().getCar();
+            if (car != null) {
+                Optional<String> name = car.getName();
+                if (name.isPresent())
+                    return name.get().equals("Audi");
+            }
+        }
         return false;
+//        Optional.ofNullable(driver).map(Driver::getCar).flatMap(Car::getName).if
     }
 
 }
